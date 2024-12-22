@@ -1,0 +1,9 @@
+package com.js.microservices.product_service.domain.service;
+
+import com.js.microservices.product_service.domain.entity.Product;
+
+public interface ProductService {
+
+    public Product retrieveProduct(CreateProductDTO dto);
+
+}
