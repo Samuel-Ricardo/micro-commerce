@@ -1,0 +1,4 @@
+package com.js.microservices.product_service.domain.usecase
+
+interface CreateProductUseCase {
+}
