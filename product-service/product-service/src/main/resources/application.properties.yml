@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: product-service
+
+  data:
+    mongo:
+      uri: mongodb://root:password@localhost:27017/product-service
+
+
+
