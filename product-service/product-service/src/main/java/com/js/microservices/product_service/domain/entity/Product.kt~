@@ -12,7 +12,7 @@ data class Product (
     private val name: String,
     @NotBlank
     private val description: String,
-    @NotBlank
+    @NotNull
     private val skuCode: SkuCode,
     @NotNull
     private val price: BigDecimal,

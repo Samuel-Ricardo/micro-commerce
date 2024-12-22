@@ -7,13 +7,13 @@ import java.math.BigDecimal
 
 data class Product (
     @NotNull
-    private val id: String,
+     val id: String,
     @NotBlank
-    private val name: String,
+     val name: String,
     @NotBlank
-    private val description: String,
+     val description: String,
     @NotNull
-    private val skuCode: SkuCode,
+     val skuCode: SkuCode,
     @NotNull
-    private val price: BigDecimal,
+     val price: BigDecimal,
 ) {}
