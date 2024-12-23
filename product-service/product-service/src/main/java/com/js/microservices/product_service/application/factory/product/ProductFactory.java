@@ -48,5 +48,7 @@ public class ProductFactory {
         );
     }
 
-
+    public static List<Product> newProductEntityList(List<ProductModel> models) {
+        return models.stream().map(ProductFactory::newProductEntity).toList();
+    }
 }
