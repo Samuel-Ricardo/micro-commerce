@@ -3,6 +3,7 @@ package com.js.microservices.product_service.application.controller;
 import com.js.microservices.product_service.domain.dto.CreateProductDTO;
 import com.js.microservices.product_service.domain.dto.ProductCreatedDTO;
 import com.js.microservices.product_service.domain.service.ProductService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,7 @@ public class ProductController {
 
     @PostMapping
     @ResponseStatus(CREATED)
-    public ProductCreatedDTO createProduct(CreateProductDTO dto) {
+    public ProductCreatedDTO createProduct(@Valid @RequestBody CreateProductDTO dto) {
         return toCreatedDTO(service.create(dto));
     }
 
