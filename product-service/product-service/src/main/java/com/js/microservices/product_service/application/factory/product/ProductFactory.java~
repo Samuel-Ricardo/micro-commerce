@@ -38,17 +38,5 @@ public class ProductFactory {
                 .build();
     }
 
-    public static Product newProductEntity(ProductModel productModel) {
-        return new Product(
-            productModel.getId(),
-            productModel.getName(),
-            productModel.getDescription(),
-            new SkuCode(productModel.getSkuCode()),
-            productModel.getPrice()
-        );
-    }
-
-    public static List<Product> newProductEntityList(List<ProductModel> models) {
-        return models.stream().map(ProductFactory::newProductEntity).toList();
-    }
+    
 }

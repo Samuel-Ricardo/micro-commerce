@@ -38,5 +38,15 @@ public class ProductFactory {
                 .build();
     }
 
-    
+    public static Product newProductEntity(ProductModel productModel) {
+        return new Product(
+            productModel.getId(),
+            productModel.getName(),
+            productModel.getDescription(),
+            new SkuCode(productModel.getSkuCode()),
+            productModel.getPrice()
+        );
+    }
+
+
 }
