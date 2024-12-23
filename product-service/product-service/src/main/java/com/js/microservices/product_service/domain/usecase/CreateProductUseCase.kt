@@ -4,5 +4,5 @@ import com.js.microservices.product_service.domain.dto.CreateProductDTO
 import com.js.microservices.product_service.domain.entity.Product
 
 interface CreateProductUseCase {
-    fun createProduct(createProductDTO: CreateProductDTO): Product
+    fun execute(createProductDTO: CreateProductDTO): Product
 }
