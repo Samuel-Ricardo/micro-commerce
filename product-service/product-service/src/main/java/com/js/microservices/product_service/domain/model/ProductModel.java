@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 @Document (value = "products")
 @Data @Builder
 @AllArgsConstructor @NoArgsConstructor
-public class Product {
+public class ProductModel {
     private String id;
     private String name;
     private String description;
