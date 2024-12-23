@@ -61,4 +61,16 @@ class ProductServiceApplicationTests {
 
 	}
 
+	@Test
+	void getAllProducts() {
+
+	  RestAssured.given()
+			  .contentType("application/json")
+			  .when()
+			  .get("/api/v1/products")
+			  .then()
+			  .statusCode(200)
+			  .body("size()", is(0));
+
+	}
 }
