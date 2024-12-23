@@ -5,8 +5,6 @@ import jakarta.validation.constraints.NotNull
 import java.math.BigDecimal
 
 data class CreateProductDTO (
-    @NotNull
-    val id: String,
     @NotBlank
     val name: String,
     @NotBlank
