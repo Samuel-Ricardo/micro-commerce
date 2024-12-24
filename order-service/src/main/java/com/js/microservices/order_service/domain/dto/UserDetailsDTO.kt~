@@ -1,0 +1,14 @@
+package com.js.microservices.order_service.domain.dto
+
+import jakarta.validation.constraints.Email
+import jakarta.validation.constraints.NotBlank
+
+data class UserDetailsDTO(
+    @NotBlank
+    @Email
+    email: String,
+    @NotBlank
+    firstName: String,
+    @NotBlank
+    lastName: String
+)

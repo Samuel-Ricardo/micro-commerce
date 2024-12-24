@@ -1,0 +1,9 @@
+package com.js.microservices.order_service.application.error
+
+data class InsufficientStockException(
+    val skuCode: String
+) : RuntimeException() {
+
+    override val message: String
+        get() = "Product with SkuCode $skuCode is not in stock"
+}

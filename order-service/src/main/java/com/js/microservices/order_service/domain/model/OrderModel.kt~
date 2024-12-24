@@ -1,0 +1,5 @@
+package com.js.microservices.order_service.domain.model
+
+
+class OrderModel {
+}
