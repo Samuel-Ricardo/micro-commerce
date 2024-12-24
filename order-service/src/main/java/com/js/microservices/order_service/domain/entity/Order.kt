@@ -4,10 +4,10 @@ import com.js.microservices.order_service.domain.vo.Price
 import com.js.microservices.order_service.domain.vo.SkuCode
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.NotNull
+import java.util.UUID
 
 class Order (
-    @NotBlank
-    val id: String,
+    val id: UUID,
     @NotBlank
     val orderNumber: String,
     @NotNull
@@ -16,4 +16,4 @@ class Order (
     val price: Price,
     @NotNull
     val quantity: Int
-) {}
+)
