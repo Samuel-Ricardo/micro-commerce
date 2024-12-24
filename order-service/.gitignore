@@ -1,5 +1,5 @@
 .docker
-
+.env
 
 HELP.md
 target/
