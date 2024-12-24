@@ -6,11 +6,16 @@ spring:
     name: order-service
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/order
+    url: jdbc:postgresql://localhost:5432/order_service
     username: admin
     password: admin
 
+  driver-class-name: org.postgresql.Driver
+  
+
   jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
     hibernate:
       ddl-auto: none
 
