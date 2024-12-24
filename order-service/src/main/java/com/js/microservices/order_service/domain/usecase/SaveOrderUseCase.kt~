@@ -1,0 +1,4 @@
+package com.js.microservices.order_service.domain.usecase
+
+interface SaveOrderUseCase {
+}
