@@ -1,0 +1,12 @@
+package com.js.microservices.order_service.domain.dto
+
+import java.math.BigDecimal
+
+data class PlaceOrderDTO(
+    val id: String,
+    val orderNumber: String,
+    val skuCode: String,
+    val price: BigDecimal,
+    val quantity: Int,
+    val userDetail: UserDetail
+)
