@@ -41,5 +41,13 @@ class InventoryServiceApplicationTests {
 				.body(containsString("true"));
 	}
 
-	
+	@Test
+	void shouldNotHaveStock() {
+		RestAssured
+				.when()
+				.get("/api/v1/inventory?skuCode=iphone_15&quantity=101")
+				.then()
+				.statusCode(200)
+				.body(containsString("false"));
+	}
 }
