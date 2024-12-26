@@ -1,0 +1,10 @@
+package com.js.microservices.inventory_service.domain.dto
+
+import com.js.microservices.inventory_service.domain.vo.SkuCode
+
+
+data class IsInStockDTO(
+    @NotBla
+    val skuCode: SkuCode,
+    val quantity: Int
+)
