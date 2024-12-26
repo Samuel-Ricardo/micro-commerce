@@ -1,0 +1,28 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: inventory-service
+
+#  config:
+#    activate:
+#      on-profile: dev
+#    locations: file:.env
+
+  #config:
+    #import: file: .env
+    #import: dotenv
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/inventory-service
+    username: admin
+    password: admin
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+
+

@@ -1,0 +1,4 @@
+package com.js.microservices.inventory_service.domain.usecase
+
+interface IsInStockUseCase {
+}

@@ -1,0 +1,12 @@
+package com.js.microservices.inventory_service.domain.entity;
+
+import com.js.microservices.inventory_service.domain.vo.SkuCode;
+import lombok.Builder;
+import lombok.Data;
+
+@Data @Builder
+public class Inventory {
+    private String id;
+    private SkuCode skuCode;
+    private int quantity;
+}

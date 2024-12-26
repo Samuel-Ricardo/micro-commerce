@@ -1,0 +1,21 @@
+services:
+  mysql:
+    image: mysql:8.3.0
+    restart: on-failure
+    env_file:
+      - .env
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./.docker/data/mysql:/var/lib/mysql
+      - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: phpmyadmin_container
+    restart: on-failure
+    env_file:
+      - .env
+    ports:
+      - "8080:80"
+

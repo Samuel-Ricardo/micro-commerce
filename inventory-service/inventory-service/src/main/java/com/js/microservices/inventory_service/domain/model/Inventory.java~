@@ -1,0 +1,16 @@
+package com.js.microservices.inventory_service.domain.model;
+
+import com.js.microservices.inventory_service.domain.vo.SkuCode;
+import jakarta.persistence.*;
+import lombok.Builder;
+import lombok.Data;
+
+@Entity @Table(name = "t_inventory")
+@Data @Builder
+public class Inventory {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
+    private SkuCode skuCode;
+    private Integer quantity;
+}
