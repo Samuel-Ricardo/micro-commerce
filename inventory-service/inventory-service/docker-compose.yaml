@@ -1,6 +1,4 @@
-
 services:
-
   mysql:
     image: mysql:8.3.0
     restart: on-failure
@@ -20,3 +18,4 @@ services:
       - .env
     ports:
       - "8080:80"
+
