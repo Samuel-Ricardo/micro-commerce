@@ -79,13 +79,6 @@ class OrderServiceApplicationTests {
 	@Test
 	void shouldPlaceOrder() {
 
-		String submitOrderJson = """
-                {
-                     "skuCode": "iphone_15",
-                     "price": 1000,
-                     "quantity": 100
-                }
-                """;
 		InventoryClientStub.stubInventoryCall("iphone_15", 100);
 
 		String requestBody = """
@@ -117,4 +110,35 @@ class OrderServiceApplicationTests {
 
 	}
 
+	@Test
+	void shouldNotPlaceOrderIfInventoryIsNotAvailable() {
+
+		InventoryClientStub.stubInventoryCall("iphone_15", 101);
+
+		String requestBody = """
+				
+				{
+				  "orderNumber": "ORD-12345",
+				  "skuCode": "iphone_15",
+				  "price": 19.99,
+				  "quantity": 101,
+				  "userDetails": {
+				    "email": "cliente@example.com",
+				    "firstName": "Fulano",
+				    "lastName": "de Tal"
+				  }
+				}
+				
+				""";
+
+		RestAssured.given()
+				.contentType("application/json")
+				.body(requestBody)
+				.when()
+				.post("/api/v1/orders")
+				.then()
+				.statusCode(422)
+				.body("statusCode", equalTo("UNPROCESSABLE_ENTITY"))
+		;
+	}
 }
