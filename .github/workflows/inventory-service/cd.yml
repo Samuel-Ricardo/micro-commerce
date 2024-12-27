@@ -1,0 +1,39 @@
+name: CD Pipeline
+
+on:
+  workflow_run:
+    workflows:
+      - CI Pipeline
+    types:
+      - completed
+
+jobs:
+  cd_pipeline:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+
+    env:
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      IMAGE_NAME: ${{ secrets.DOCKER_USERNAME }}/inventory-service
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Navigate to project directory
+        run: cd ./inventory-service/inventory-service
+
+      - name: Download Build Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: build-artifact
+
+      - name: Log in to Docker Hub
+        run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+
+      - name: Build Docker Image
+        run: docker build -t ${{env.IMAGE_NAME}}:latest .
+
+      - name: Push Docker Image
+        run: docker push ${{env.IMAGE_NAME}}:latest
