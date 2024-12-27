@@ -111,7 +111,7 @@
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
 		</dependency>
 
-
+		
 
 	</dependencies>
 
