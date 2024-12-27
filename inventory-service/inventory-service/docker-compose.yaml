@@ -1,4 +1,14 @@
 services:
+
+  inventory-service:
+    build: .
+    env_file:
+      - .env
+    ports:
+      - "8082:8082"
+    depends_on:
+      - mysql
+
   mysql:
     image: mysql:8.3.0
     restart: on-failure
@@ -18,4 +28,5 @@ services:
       - .env
     ports:
       - "8080:80"
-
+    depends_on:
+      - mysql
