@@ -86,7 +86,7 @@ class OrderServiceApplicationTests {
                      "quantity": 100
                 }
                 """;
-		InventoryClientStub.stubInventoryCall("iphone_15", 100);
+		InventoryClientStub.stubInventoryCall("iphone_15", 1);
 
 		String requestBody = """
 				
