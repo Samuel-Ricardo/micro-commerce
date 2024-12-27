@@ -1,0 +1,3 @@
+inventory:
+  service:
+    url: http://localhost:${wiremock.port}/

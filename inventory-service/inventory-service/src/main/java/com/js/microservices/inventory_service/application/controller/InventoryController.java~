@@ -6,6 +6,7 @@ import com.js.microservices.inventory_service.domain.vo.SkuCode;
 import lombok.AllArgsConstructor;
 import static org.springframework.http.HttpStatus.OK;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,11 +14,17 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 public class InventoryController {
 
+    @Value("${spring.datasource.url}")
+    private static String url;
+
     private final InventoryService service;
 
     @GetMapping
     @ResponseStatus(OK)
-    public boolean isInStock(@RequestParam String skuCode, @RequestParam int quantity) {
+    public boolean isInStock(@RequestParam String skuCode, @RequestParam Integer quantity) {
+
+        System.out.println("url: " + url);
+
         return service.isInStock(
                 new IsInStockDTO(new SkuCode(skuCode), quantity)
         );
