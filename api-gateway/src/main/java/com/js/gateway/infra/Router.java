@@ -36,4 +36,10 @@ public class Router {
                 .build();
     }
 
+    @Bean
+    public RouterFunction<ServerResponse> inventoryService() {
+        return GatewayRouterFunctions.route("inventory_service")
+                .route(RequestPredicates.path("/api/v1/inventory/**"), http(inventoryServiceUrl))
+                .build();
+    }
 }
