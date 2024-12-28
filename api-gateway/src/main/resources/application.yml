@@ -1,0 +1,15 @@
+server:
+  port: ${API_GATEWAY_SERVER_PORT}
+
+spring:
+  application:
+    name: api-gateway
+
+services:
+  url:
+    product: ${PRODUCT_SERVICE_URL}
+    order: ${ORDER_SERVICE_URL}
+    inventory: ${INVENTORY_SERVICE_URL}
+
+
+
