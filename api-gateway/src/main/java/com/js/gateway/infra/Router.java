@@ -29,5 +29,11 @@ public class Router {
                 .build();
     }
 
-    
+    @Bean
+    public RouterFunction<ServerResponse> orderService() {
+        return GatewayRouterFunctions.route("order_service")
+                .route(RequestPredicates.path("/api/v1/orders/**"), http(orderServiceUrl))
+                .build();
+    }
+
 }
