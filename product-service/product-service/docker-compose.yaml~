@@ -1,4 +1,5 @@
 services:
+
   product-service:
     build: .
     ports:
@@ -12,14 +13,7 @@ services:
       - "27017:27017"
     volumes:
       - .docker/data/mongodb:/data/db
-    env_file:
-      - .env
-
-  mongo-express:
-    image: mongo-express:latest
-    container_name: mongo-express
-    ports:
-      - "8081:8081"
-    env_file:
-      - .env
-
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: product-service
