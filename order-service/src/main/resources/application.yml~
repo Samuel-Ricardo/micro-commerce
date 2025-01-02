@@ -1,6 +1,10 @@
 server:
   port: 8081
 
+inventory:
+  service:
+    url: http://inventory-service:8082
+
 spring:
   application:
     name: order-service
