@@ -1,0 +1,21 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: api-gateway
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://keycloak:8080/realms/java-shop-microservices-security-realm
+
+services:
+  url:
+    product: http://localhost:8080
+    order: http://localhost:8081
+    inventory: http://localhost:8082
+
+
+
