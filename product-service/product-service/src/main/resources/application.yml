@@ -1,9 +1,16 @@
+SERVER:
+  PORT: ${SERVER_PORT}
+
 spring:
   application:
     name: product-service
   data:
     mongodb:
-      uri: mongodb://root:root@localhost:27017/product-service?authSource=admin
+      uri: ${MONGODB_URI}
 
-
+springdoc:
+  swagger-ui:
+    path: /api-docs/ui.html
+  api-docs:
+    path: /api-docs
 
