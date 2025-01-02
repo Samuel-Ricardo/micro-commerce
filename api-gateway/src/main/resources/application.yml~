@@ -26,11 +26,11 @@ springdoc:
     path: ${API_DOCS_UI_PATH}
     urls:
       - name: Product Service
-        url: ${API_DOCS_URLS_PRODUCT_SERVICE}
+        url: /aggregate/product-service/v3/api-docs
       - name: Order Service
-        url: ${API_DOCS_URLS_ORDER_SERVICE}
+        url: /aggregate/order-service/v3/api-docs
       - name: Inventory Service
-        url: ${API_DOCS_URLS_INVENTORY_SERVICE}
+        url: /aggregate/inventory-service/v3/api-docs
 
 management:
   health:
