@@ -42,6 +42,27 @@ services:
       depends_on:
         - mysql
 
+    keycloak-mysql:
+      container_name: keycloak-mysql
+      image: mysql:8
+      volumes:
+        - ./.docker/volume-data/mysql_keycloak_data:/var/lib/mysql
+      env_file:
+        - .env.keycloak
+
+    keycloak:
+      container_name: keycloak
+      image: quay.io/keycloak/keycloak:24.0.1
+      command: [ "start-dev", "--import-realm" ]
+      env_file:
+        - .env.keycloak
+      ports:
+        - "8181:8080"
+      volumes:
+        - ./docker/keycloak/realms/:/opt/keycloak/data/import/
+      depends_on:
+        - keycloak-mysql
+
     mongodb:
       image: mongo:latest
       ports:
