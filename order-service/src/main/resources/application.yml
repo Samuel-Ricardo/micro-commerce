@@ -21,6 +21,11 @@ spring:
     hibernate:
       ddl-auto: none
 
+springdoc:
+  swagger-ui:
+    path: /api-docs/ui.html
+  api-docs:
+    path: /api-docs
 
 
 
