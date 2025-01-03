@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start:ssr": "ng build && npm run serve:ssr:java-shop-website",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
