@@ -9,14 +9,14 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: ${KEYCLOAK_ISSUER_URI}
+          issuer-uri: http://localhost:8181/realms/java-shop-microservices-security-realm
 
 
 services:
   url:
-    product: ${PRODUCT_SERVICE_URL}
-    order: ${ORDER_SERVICE_URL}
-    inventory: ${INVENTORY_SERVICE_URL}
+    product: http://localhost:8080
+    order: http://localhost:8081
+    inventory: http://localhost:8082
 
 
 springdoc:
@@ -39,7 +39,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: *
+        include: "*"
   endpoint:
     health:
       show-details: always
@@ -57,6 +57,11 @@ resilience4j:
         permittedNumberOfCallsInHalfOpenState: 3
         automaticTransitionFromOpenToHalfOpenEnabled: true
         minimum-number-of-calls: 5
+
+  timelimiter:
+    configs:
+      default:
+        timeout-duration: 3s
 
   retry:
     configs:

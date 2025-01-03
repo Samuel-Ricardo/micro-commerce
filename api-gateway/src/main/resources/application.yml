@@ -35,14 +35,14 @@ springdoc:
 management:
   health:
     circuitbreakers:
-      enabled: ${CIRCUIT_BREAKER_ENABLED}
+      enabled: ${CIRCUIT_BREAKERS_ENABLED}
   endpoints:
     web:
       exposure:
         include: ${ENDPOINTS_WEB_EXPOSURE_INCLUDE}
   endpoint:
     health:
-      show-details: ${ENDPOINTS_HEALTH_SHOW_DETAILS}
+      show-details: ${ENDPOINT_HEALTH_SHOW_DETAILS}
 
 resilience4j:
   circuitbreaker:

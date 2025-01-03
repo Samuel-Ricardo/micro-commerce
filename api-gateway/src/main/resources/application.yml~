@@ -9,21 +9,21 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: ${KEYCLOAK_ISSUER_URI}
+          issuer-uri: http://localhost:8181/realms/java-shop-microservices-security-realm
 
 
 services:
   url:
-    product: ${PRODUCT_SERVICE_URL}
-    order: ${ORDER_SERVICE_URL}
-    inventory: ${INVENTORY_SERVICE_URL}
+    product: http://localhost:8080
+    order: http://localhost:8081
+    inventory: http://localhost:8082
 
 
 springdoc:
   api-docs:
-    path: ${API_DOCS_PATH}
+    path: /api-docs
   swagger-ui:
-    path: ${API_DOCS_UI_PATH}
+    path: /api-docs/ui.html
     urls:
       - name: Product Service
         url: /aggregate/product-service/v3/api-docs
@@ -35,35 +35,36 @@ springdoc:
 management:
   health:
     circuitbreakers:
-      enabled: ${CIRCUIT_BREAKER_ENABLED}
+      enabled: true
   endpoints:
     web:
       exposure:
-        include: ${ENDPOINTS_WEB_EXPOSURE_INCLUDE}
+        include: "*"
   endpoint:
     health:
-      show-details: ${ENDPOINTS_HEALTH_SHOW_DETAILS}
+      show-details: always
+
 
 resilience4j:
   circuitbreaker:
     configs:
       default:
-        registerHealthIndicator: ${REGISTER_HEALTH_INDICATOR}
-        slidingWindowType: ${SLIDING_WINDOW_TYPE}
-        slidingWindowSize: ${SLIDING_WINDOW_SIZE}
-        failureRateThreshold: ${FAILURE_RATE_THRESHOLD}
-        waitDurationInOpenState: ${WAIT_DURATION_IN_OPEN_STATE}
-        permittedNumberOfCallsInHalfOpenState: ${PERMITTED_NUMBER_OF_CALLS_IN_HALF_OPEN_STATE}
-        automaticTransitionFromOpenToHalfOpenEnabled: ${AUTOMATIC_TRANSITION_FROM_OPEN_TO_HALF_OPEN_ENABLED}
-        minimum-number-of-calls: ${MINIMUM_NUMBER_OF_CALLS}
+        registerHealthIndicator: true
+        slidingWindowType: COUNT_BASED
+        slidingWindowSize: 10
+        failureRateThreshold: 50
+        waitDurationInOpenState: 5s
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        minimum-number-of-calls: 5
 
   timelimiter:
     configs:
       default:
-        timeout-duration: ${TIMEOUT_DURATION}
+        timeout-duration: 0s
 
   retry:
     configs:
       default:
-        max-attempts: ${MAX_ATTEMPTS}
-        wait-duration: ${WAIT_DURATION_BETWEEN_ATTEMPTS}
+        max-attempts: 3
+        wait-duration: 2s
