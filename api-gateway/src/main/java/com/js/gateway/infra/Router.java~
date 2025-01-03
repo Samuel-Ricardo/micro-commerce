@@ -67,7 +67,7 @@ public class Router {
     @Bean
     public RouterFunction<ServerResponse> inventoryService() {
         return GatewayRouterFunctions.route("inventory_service")
-                .route(RequestPredicates.path("/api/v1/inventory"), http(inventoryServiceUrl))
+                .route(RequestPredicates.path("/api/v1/inventory/**"), http(inventoryServiceUrl))
                 .filter(CircuitBreakerFilterFunctions.circuitBreaker("inventoryServiceCircuitBreaker", URI.create("forward:/fallback")))
                 .build();
     }
