@@ -21,6 +21,43 @@ spring:
     hibernate:
       ddl-auto: none
 
+springdoc:
+  swagger-ui:
+    path: /api-docs/ui.html
+  api-docs:
+    path: /api-docs
 
+management:
+  health:
+    circuitbreakers:
+      enabled: ${ORDERS_CIRCUIT_BREAKERS_ENABLED}
+  endpoints:
+    web:
+      exposure:
+        include: ${ORDERS_ENDPOINTS_WEB_EXPOSURE_INCLUDE}
+  endpoint:
+    health:
+      show-details: ${ORDERS_ENDPOINT_HEALTH_SHOW_DETAILS}
 
-
+resilience4j:
+  circuitbreaker:
+    instances:
+      inventory:
+        registerHealthIndicator: ${ORDERS_REGISTER_HEALTH_INDICATOR}
+        event-consumer-buffer-size: ${ORDERS_EVENT_CONSUMER_BUFFER_SIZE}
+        slidingWindowType: ${ORDERS_SLIDING_WINDOW_TYPE}
+        slidingWindowSize: ${ORDERS_SLIDING_WINDOW_SIZE}
+        failureRateThreshold: ${ORDERS_FAILURE_RATE_THRESHOLD}
+        waitDurationInOpenState: ${ORDERS_WAIT_DURATION_IN_OPEN_STATE}
+        permittedNumberOfCallsInHalfOpenState: ${ORDERS_PERMITTED_NUMBER_OF_CALLS_IN_HALF_OPEN_STATE}
+        automaticTransitionFromOpenToHalfOpenEnabled: ${ORDERS_AUTOMATIC_TRANSITION_FROM_OPEN_TO_HALF_OPEN_ENABLED}
+        minimum-number-of-calls: ${ORDERS_MINIMUM_NUMBER_OF_CALLS}
+  timelimiter:
+    instances:
+      inventory:
+        timeout-duration: ${ORDERS_TIMEOUT_DURATION}
+  retry:
+    instances:
+      inventory:
+        max-attempts: ${ORDERS_MAX_ATTEMPTS}
+        wait-duration: ${ORDERS_WAIT_DURATION_BETWEEN_ATTEMPTS}
