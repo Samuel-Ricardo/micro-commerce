@@ -33,7 +33,7 @@ public class Router {
     @Bean
     public RouterFunction<ServerResponse> productService() {
         return GatewayRouterFunctions.route("product_service")
-                .route(RequestPredicates.path("/api/v1/products/**"), http(productServiceUrl))
+                .route(RequestPredicates.path("/api/v1/products"), http(productServiceUrl))
                 .filter(CircuitBreakerFilterFunctions.circuitBreaker("productServiceCircuitBreaker", URI.create("forward:/fallback")))
                 .build();
     }
@@ -50,7 +50,7 @@ public class Router {
     @Bean
     public RouterFunction<ServerResponse> orderService() {
         return GatewayRouterFunctions.route("order_service")
-                .route(RequestPredicates.path("/api/v1/orders/**"), http(orderServiceUrl))
+                .route(RequestPredicates.path("/api/v1/orders"), http(orderServiceUrl))
                 .filter(CircuitBreakerFilterFunctions.circuitBreaker("orderServiceCircuitBreaker", URI.create("forward:/fallback")))
                 .build();
     }
@@ -67,7 +67,7 @@ public class Router {
     @Bean
     public RouterFunction<ServerResponse> inventoryService() {
         return GatewayRouterFunctions.route("inventory_service")
-                .route(RequestPredicates.path("/api/v1/inventory/**"), http(inventoryServiceUrl))
+                .route(RequestPredicates.path("/api/v1/inventory"), http(inventoryServiceUrl))
                 .filter(CircuitBreakerFilterFunctions.circuitBreaker("inventoryServiceCircuitBreaker", URI.create("forward:/fallback")))
                 .build();
     }
