@@ -1,8 +1,7 @@
 services:
-  frontend:
-    build: .
-    restart: on-failure
+  angular-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - "4002:4002"
-    env_file:
-      - .env
+      - "4002:80"
