@@ -1,0 +1,8 @@
+services:
+  frontend:
+    build: .
+    restart: on-failure
+    ports:
+      - "4002:4002"
+    env_file:
+      - .env
