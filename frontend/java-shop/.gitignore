@@ -3,7 +3,7 @@
 .env
 .env.keycloak
 
-
+.docker
 
 # Compiled output
 /dist
