@@ -2,22 +2,18 @@ FROM node:20-alpine AS build
 
 WORKDIR /app
 
-COPY package.json package-lock.json ./
-RUN npm ci --frozen-lockfile
+COPY package*.json ./
+RUN npm ci
+
 
 COPY . .
-RUN npm run build
+RUN npm run build -- --configuration production
 
+FROM nginx:alpine
 
-FROM node:20-alpine AS production
+COPY --from=build /app/dist/java-shop/browser /usr/share/nginx/html
 
-WORKDIR /app
+EXPOSE 80
 
-COPY package.json package-lock.json ./
-RUN npm ci --production --frozen-lockfile
+CMD ["nginx", "-g", "daemon off;"]
 
-COPY --from=build /app/dist /app/dist
-
-EXPOSE 4002
-
-CMD ["node", "dist/server/main.js"]
