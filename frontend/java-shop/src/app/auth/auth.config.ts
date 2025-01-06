@@ -3,7 +3,7 @@ import { PassedInitialConfig } from 'angular-auth-oidc-client';
 export const authConfig: PassedInitialConfig = {
   config: {
     authority:
-      'http://keycloak:8181/realms/java-shop-microservices-security-realm',
+      'http://localhost:8181/realms/java-shop-microservices-security-realm',
     redirectUrl: window.location.origin,
     postLogoutRedirectUri: window.location.origin,
     clientId: 'frontend-client',
