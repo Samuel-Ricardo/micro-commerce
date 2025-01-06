@@ -4,7 +4,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "4002:80"
+      - "4200:80"
     depends_on:
       - keycloak
 
