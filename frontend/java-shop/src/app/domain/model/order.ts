@@ -5,5 +5,6 @@ export interface Order {
   orderNumber?: string;
   skuCode: string;
   price: number;
+  quantity: number;
   userDetails: UserDetail;
 }
