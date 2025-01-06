@@ -46,4 +46,20 @@ export class AddProductComponent {
       this.addProductForm.reset();
     });
   }
+
+  get skuCode() {
+    return this.addProductForm.get('skuCode');
+  }
+
+  get name() {
+    return this.addProductForm.get('name');
+  }
+
+  get description() {
+    return this.addProductForm.get('description');
+  }
+
+  get price() {
+    return this.addProductForm.get('price');
+  }
 }
