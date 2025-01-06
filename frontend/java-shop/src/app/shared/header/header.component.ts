@@ -22,4 +22,8 @@ export class HeaderComponent implements OnInit {
       if (userData) this.username = userData['preferred_username']; // userData.preferred_username;
     });
   }
+
+  login() {
+    this.securityService.authorize();
+  }
 }
