@@ -26,4 +26,10 @@ export class HeaderComponent implements OnInit {
   login() {
     this.securityService.authorize();
   }
+
+  logout() {
+    this.securityService
+      .logoff()
+      .subscribe((result) => console.log({ result }));
+  }
 }
