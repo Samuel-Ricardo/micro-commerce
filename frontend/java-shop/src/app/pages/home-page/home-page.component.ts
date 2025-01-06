@@ -36,4 +36,8 @@ export class HomePageComponent implements OnInit {
         });
     });
   }
+
+  goToCreateProductPage() {
+    this.router.navigateByUrl('/add-product');
+  }
 }
