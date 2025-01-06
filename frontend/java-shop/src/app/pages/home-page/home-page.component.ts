@@ -5,11 +5,13 @@ import { OrderServiceService } from '../../application/service/order-service.ser
 import { Router } from '@angular/router';
 import { Product } from '../../domain/model/product';
 import { Order } from '../../domain/model/order';
+import { AsyncPipe, JsonPipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [],
+  imports: [AsyncPipe, JsonPipe, FormsModule],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
 })
