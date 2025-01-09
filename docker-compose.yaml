@@ -31,7 +31,7 @@ services:
 
   api-gateway:
     container_name: api-gateway
-    build: .
+    image: samuelrcabral/api-gateway:latest
     ports:
       - "9000:8080"
     env_file:
