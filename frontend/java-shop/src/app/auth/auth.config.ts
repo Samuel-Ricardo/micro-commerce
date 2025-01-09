@@ -1,12 +1,12 @@
 import { PassedInitialConfig } from 'angular-auth-oidc-client';
+import { environment } from '../../environments/environment';
 
 export const authConfig: PassedInitialConfig = {
   config: {
-    authority:
-      'http://localhost:8181/realms/java-shop-microservices-security-realm',
+    authority: environment.AUTH.AUTHORITY,
     redirectUrl: window.location.origin,
     postLogoutRedirectUri: window.location.origin,
-    clientId: 'frontend-client',
+    clientId: environment.AUTH.CLIENT.ID,
     scope: 'openid profile offline_access',
     responseType: 'code',
     silentRenew: true,
