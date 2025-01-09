@@ -1,5 +1,6 @@
 services:
   angular-app:
+    container_name: angular-app
     build:
       context: .
       dockerfile: Dockerfile
@@ -7,6 +8,7 @@ services:
       - "4200:80"
     depends_on:
       - keycloak
+      - api-gateway
 
   keycloak:
     container_name: keycloak
@@ -28,3 +30,120 @@ services:
       - ./.docker/volume-data/mysql_keycloak_data:/var/lib/mysql
     env_file:
       - .env.keycloak
+
+  api-gateway:
+    container_name: api-gateway
+    build: .
+    ports:
+      - "9000:8080"
+    env_file:
+      - .env.gateway
+    depends_on:
+      - product-service
+      - order-service
+      - inventory-service
+
+  product-service:
+    container_name: product-service
+    image: samuelrcabral/product-service:latest
+    restart: on-failure
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env.gateway
+    depends_on:
+      - mongodb
+
+  order-service:
+    container_name: order-service
+    image: samuelrcabral/order-service:latest
+    restart: on-failure
+    ports:
+      - "8081:8080"
+    env_file:
+      - .env.gateway
+    depends_on:
+      - postgres
+      - inventory-service
+
+  inventory-service:
+    container_name: inventory-service
+    image: samuelrcabral/inventory-service:latest
+    restart: on-failure
+    ports:
+      - "8082:8080"
+    env_file:
+      - .env.gateway
+    depends_on:
+      - mysql
+
+  mongodb:
+    container_name: mongodb
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - .docker/data/mongodb:/data/db
+    env_file:
+      - .env.gateway
+
+    #OPTIONAL
+  mongo-express:
+    image: mongo-express:latest
+    container_name: mongo-express
+    ports:
+      - "9081:8081"
+    env_file:
+      - .env.gateway
+
+  postgres:
+    container_name: postgres
+    image: postgres
+    restart: always
+    env_file:
+      - .env.gateway
+    volumes:
+      - .docker/postgres:/data/postgres
+      - ./docker/postgresql:/docker-entrypoint-initdb.d
+      - ./docker/postgresql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+
+    #OPTIONAL
+  pgadmin:
+    container_name: pgadmin
+    image: dockerframework/pgadmin
+    restart: always
+    depends_on:
+      - postgres
+    env_file:
+      - .env.gateway
+    volumes:
+      - .docker/pgadmin:/database/admin/pgadmin
+    ports:
+      - "5050:80"
+
+  mysql:
+    container_name: mysql
+    image: mysql:8.3.0
+    restart: on-failure
+    env_file:
+      - .env.gateway
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./.docker/data/mysql:/var/lib/mysql
+      - ./docker/mysql:/docker-entrypoint-initdb.d
+      - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+    #OPTIONAL
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin:latest
+    restart: on-failure
+    env_file:
+      - .env.gateway
+    ports:
+      - "9080:80"
+    depends_on:
+      - mysql
