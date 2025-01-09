@@ -1,6 +1,7 @@
 .env
 .env.keycloak
 .env.gateway
+.docker
 
 # Compiled class file
 *.class
