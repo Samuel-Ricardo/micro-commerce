@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Product } from '../../domain/model/product';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -10,13 +11,13 @@ export class ProductServiceService {
 
   getProducts() {
     return this.httpClient.get<Array<Product>>(
-      'http://api-gateway:9000/api/v1/products',
+      environment.SERVICES.PRODUCT.URL || '',
     );
   }
 
   createProduct(product: Product) {
     return this.httpClient.post<Product>(
-      'http://api-gateway:9000/api/v1/products',
+      environment.SERVICES.PRODUCT.URL || '',
       product,
     );
   }

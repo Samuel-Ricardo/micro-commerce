@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Order } from '../../domain/model/order';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +19,7 @@ export class OrderServiceService {
     };
 
     return this.httpClient.post<string>(
-      'http://api-gateway:9000/api/v1/orders',
+      environment.SERVICES.ORDER.URL || '/',
       order,
       httpOptions,
     );
