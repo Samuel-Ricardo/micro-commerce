@@ -4,6 +4,9 @@
 .env.keycloak
 .env.gateway
 
+src/environments/environment.prod.ts
+src/environments/environment.development.ts
+
 .docker
 
 # Compiled output
