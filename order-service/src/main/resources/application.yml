@@ -21,6 +21,18 @@ spring:
     hibernate:
       ddl-auto: none
 
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
+    template:
+      default-topic: ${KAFKA_TEMPLATE_DEFAULT_TOPIC}
+    producer:
+      key-serializer: ${KAFKA_PRODUCER_KEY_SERIALIZER}
+      value-serializer: ${KAFKA_PRODUCER_VALUE_SERIALIZER}
+      properties:
+        schema:
+          registry:
+            url: ${KAFKA_PRODUCER_SCHEMA_REGISTRY_URL}
+
 springdoc:
   swagger-ui:
     path: /api-docs/ui.html
