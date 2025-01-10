@@ -51,7 +51,15 @@ services:
     depends_on:
       - broker
 
-   
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    ports:
+      - "8083:8083"
+    env_file:
+      - .env.kafka
+    depends_on:
+      - broker
+      - schema-registry
 
 
   mysql:
