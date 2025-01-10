@@ -40,7 +40,18 @@ services:
     depends_on:
       - zookeeper
 
-  
+  schema-registry:
+    image: confluentinc/cp-schema-registry:latest
+    container_name: schema-registry
+    hostname: schema-registry
+    ports:
+      - "8081:8081"
+    env_file:
+      - .env.kafka
+    depends_on:
+      - broker
+
+   
 
 
   mysql:
