@@ -16,7 +16,8 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 
 
-@Service @AllArgsConstructor
+@AllArgsConstructor
+@Service
 public class OrderServiceImpl implements OrderService {
 
     private final HaveStockUseCase haveStock;
