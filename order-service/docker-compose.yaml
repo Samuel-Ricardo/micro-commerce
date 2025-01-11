@@ -45,7 +45,7 @@ services:
     container_name: schema-registry
     hostname: schema-registry
     ports:
-      - "8081:8081"
+      - "8181:8081"
     env_file:
       - .env.kafka
     depends_on:
@@ -54,7 +54,7 @@ services:
   kafka-ui:
     image: provectuslabs/kafka-ui:latest
     ports:
-      - "8083:8083"
+      - "9090:8080"
     env_file:
       - .env.kafka
     depends_on:
