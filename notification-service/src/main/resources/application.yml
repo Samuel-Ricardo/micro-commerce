@@ -1,0 +1,9 @@
+server:
+  port: ${NOTIFICATION_SERVICE_PORT}
+
+spring:
+  application:
+    name: notification-service
+
+
+ 
