@@ -1,23 +1,66 @@
-
 services:
-
   order_service:
-      build: .
-      env_file:
-          - .env
-      depends_on:
-          - postgres
-      ports:
-          - "8081:8081"
+    build: .
+    restart: on-failure
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+    ports:
+      - "8081:8081"
 
   inventory-service:
-    image: samuelrcabral/inventory-service:v1.0.0
+    image: samuelrcabral/inventory-service:latest
+    restart: on-failure
     env_file:
       - .env
     depends_on:
       - mysql
     ports:
       - "8082:8082"
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    container_name: zookeeper
+    hostname: zookeeper
+    restart: always
+    env_file:
+      - .env.kafka
+    ports:
+      - "2181:2181"
+
+  broker:
+    image: confluentinc/cp-kafka:latest
+    container_name: broker
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+    env_file:
+      - .env.kafka
+    depends_on:
+      - zookeeper
+
+  schema-registry:
+    image: confluentinc/cp-schema-registry:latest
+    container_name: schema-registry
+    hostname: schema-registry
+    ports:
+      - "8181:8081"
+    env_file:
+      - .env.kafka
+    depends_on:
+      - broker
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    ports:
+      - "8085:8085"
+    env_file:
+      - .env.kafka
+    depends_on:
+      - broker
+      - schema-registry
+
 
   mysql:
     image: mysql
@@ -51,3 +94,4 @@ services:
       - .docker/pgadmin:/database/admin/pgadmin
     ports:
       - "5050:80"
+

@@ -1,5 +1,6 @@
 .docker
 .env
+.env.kafka
 
 HELP.md
 target/
