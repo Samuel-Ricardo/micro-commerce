@@ -6,4 +6,16 @@ spring:
     name: notification-service
 
 
- 
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: ${KAFKA_CONSUMER_GROUP_ID}
+      key-deserializer: ${KAFKA_CONSUMER_KEY_DESERIALIZER}
+      value-deserializer: ${KAFKA_CONSUMER_VALUE_DESERIALIZER}
+      properties:
+        schema:
+          registry:
+            url: ${KAFKA_CONSUMER_PROPERTIES_SCHEMA_REGISTRY_URL}
+        specific:
+          avro:
+            reader: ${KAFKA_CONSUMER_PROPERTIES_SPECIFIC_AVRO_READER}
