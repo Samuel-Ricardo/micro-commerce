@@ -8,7 +8,7 @@ inventory:
 kafka:
   topic:
     order:
-      placed: ${KAFKA_TOPIC_ORDER_PLACED}
+      placed: ${}
 
 spring:
   application:
