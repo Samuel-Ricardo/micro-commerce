@@ -1,0 +1,8 @@
+package com.js.microservices.notification.application.error.mail
+
+import com.js.microservices.notification.application.error.SendNotificationError
+import org.springframework.http.HttpStatus
+
+class SendMailError(
+ val mail: String
+): SendNotificationError(mail)

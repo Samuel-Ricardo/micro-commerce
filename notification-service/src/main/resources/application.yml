@@ -1,0 +1,34 @@
+server:
+  port: ${NOTIFICATION_SERVICE_PORT}
+
+kafka:
+  topic:
+    order:
+      placed: ${KAFKA_TOPIC_ORDER_PLACED}
+
+notification:
+  email: ${NOTIFICATION_EMAIL}
+
+spring:
+  application:
+    name: notification-service
+
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
+    consumer:
+      group-id: ${KAFKA_CONSUMER_GROUP_ID}
+      key-deserializer: ${KAFKA_CONSUMER_KEY_DESERIALIZER}
+      value-deserializer: ${KAFKA_CONSUMER_VALUE_DESERIALIZER}
+      properties:
+        schema:
+          registry:
+            url: ${KAFKA_CONSUMER_PROPERTIES_SCHEMA_REGISTRY_URL}
+        specific:
+          avro:
+            reader: ${KAFKA_CONSUMER_PROPERTIES_SPECIFIC_AVRO_READER}
+
+  mail:
+    host: ${NOTIFICATION_MAIL_HOST}
+    port: ${NOTIFICATION_MAIL_PORT}
+    username: ${NOTIFICATION_MAIL_USERNAME}
+    password: ${NOTIFICATION_MAIL_PASSWORD}

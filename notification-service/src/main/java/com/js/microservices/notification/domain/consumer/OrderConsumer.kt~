@@ -1,0 +1,6 @@
+package com.js.microservices.notification.domain.consumer
+
+
+interface OrderConsumer {
+    fun listenOrderPlacedEvent(event: Object)
+}

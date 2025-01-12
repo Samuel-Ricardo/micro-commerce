@@ -1,6 +1,6 @@
 package com.js.microservices.order_service.application.producer.kafka;
 
-import com.js.microservices.order_service.domain.event.OrderPlacedEvent;
+import com.js.microservices.order.event.OrderPlacedEvent;
 import com.js.microservices.order_service.domain.producer.OrderProducer;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
