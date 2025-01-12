@@ -13,7 +13,8 @@ class ProduceOrderPlacedEventUseCaseImpl(
 
     override fun execute(dto: ProduceOrderPlacedEventDTO) {
 
-        val event = OrderPlacedEvent.newBuilder()
+        val event = OrderPlacedEvent
+            .newBuilder()
             .setOrderNumber(dto.order.orderNumber)
             .setEmail(dto.user.email)
             .setFirstName(dto.user.firstName)
