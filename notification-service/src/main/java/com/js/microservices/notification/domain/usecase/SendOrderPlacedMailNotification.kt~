@@ -1,0 +1,5 @@
+package com.js.microservices.notification.domain.usecase
+
+interface SendOrderPlacedMailNotification {
+    execute(SendOrderPlacedMailNotificationDTO)
+}
