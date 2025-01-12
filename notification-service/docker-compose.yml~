@@ -7,4 +7,99 @@ services:
             - 8083:8083
         env_file:
           - .env
-        
+
+    order_service:
+        image: samuelrcabral/order-service:latest
+        restart: on-failure
+        env_file:
+            - .env.gateway
+        depends_on:
+            - postgres
+        ports:
+            - "8081:8081"
+
+    inventory-service:
+        image: samuelrcabral/inventory-service:latest
+        restart: on-failure
+        env_file:
+            - .env.gateway
+        depends_on:
+            - mysql
+        ports:
+            - "8082:8082"
+
+    zookeeper:
+        image: confluentinc/cp-zookeeper:latest
+        container_name: zookeeper
+        hostname: zookeeper
+        restart: always
+        env_file:
+            - .env.kafka
+        ports:
+            - "2181:2181"
+
+    broker:
+        image: confluentinc/cp-kafka:latest
+        container_name: broker
+        ports:
+            - "9092:9092"
+            - "29092:29092"
+        env_file:
+            - .env.kafka
+        depends_on:
+            - zookeeper
+
+    schema-registry:
+        image: confluentinc/cp-schema-registry:latest
+        container_name: schema-registry
+        hostname: schema-registry
+        ports:
+            - "8181:8081"
+        env_file:
+            - .env.kafka
+        depends_on:
+            - broker
+
+    kafka-ui:
+        image: provectuslabs/kafka-ui:latest
+        ports:
+            - "9090:8080"
+        env_file:
+            - .env.kafka
+        depends_on:
+            - broker
+            - schema-registry
+
+
+    mysql:
+        image: mysql
+        restart: always
+        env_file:
+            - .env.gateway
+        volumes:
+            - .docker/mysql:/var/lib/mysql
+
+    postgres:
+        image: postgres
+        restart: always
+        env_file:
+            - .env.gateway
+        volumes:
+            - .docker/postgres:/data/postgres
+            - ./docker/postgresql:/docker-entrypoint-initdb.d
+            - ./docker/postgresql/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+        ports:
+            - "5432:5432"
+
+    pgadmin:
+        image: dockerframework/pgadmin
+        restart: always
+        depends_on:
+            - postgres
+        env_file:
+            - .env.gateway
+        volumes:
+            - .docker/pgadmin:/database/admin/pgadmin
+        ports:
+            - "5050:80"
