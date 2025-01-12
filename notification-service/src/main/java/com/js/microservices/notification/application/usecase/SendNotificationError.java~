@@ -1,0 +1,4 @@
+package com.js.microservices.notification.application.usecase;
+
+public class SendNotificationError {
+}
