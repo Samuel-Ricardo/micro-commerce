@@ -1,0 +1,34 @@
+server:
+  port: 8083
+
+kafka:
+  topic:
+    order:
+      placed: order-placed
+
+notification:
+  email: fake@mail.com
+
+spring:
+  application:
+    name: notification-service
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: notification-service
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+      properties:
+        schema:
+          registry:
+            url: http://localhost:8085
+        specific:
+          avro:
+            reader: true
+
+  mail:
+    host: fake.smtp.io
+    port: 1234
+    username: user
+    password: password
