@@ -1,0 +1,11 @@
+package com.js.microservices.notification.domain.dto;
+
+import lombok.Builder;
+
+@Builder
+public class SendOrderPlacedMailNotificationDTO {
+    String to;
+    String firstName;
+    String lastName;
+    String orderNumber;
+}

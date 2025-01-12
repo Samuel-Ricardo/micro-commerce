@@ -1,0 +1,5 @@
+package com.js.microservices.order_service.domain.dto.usecase.broker
+
+@Builder
+class ProduceOrderPlacedDTO {
+}

@@ -1,0 +1,14 @@
+package com.js.microservices.order_service.domain.dto.usecase.broker;
+
+import com.js.microservices.order_service.domain.dto.UserDetailsDTO;
+import com.js.microservices.order_service.domain.entity.Order;
+import lombok.Builder;
+import lombok.Data;
+
+@Builder @Data
+public class ProduceOrderPlacedEventDTO {
+    public final Order order;
+    public final UserDetailsDTO user;
+}
+
+

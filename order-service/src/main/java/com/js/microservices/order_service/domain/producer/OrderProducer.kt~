@@ -1,0 +1,6 @@
+package com.js.microservices.order_service.domain.producer
+
+
+interface OrderProducer {
+    fun produceOrderPlacedEvent(order: Object)
+}
