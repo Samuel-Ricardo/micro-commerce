@@ -1,5 +1,6 @@
 .env
 .env.gateway
+.env.kafka
 
 HELP.md
 target/
