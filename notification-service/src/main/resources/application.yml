@@ -1,6 +1,14 @@
 server:
   port: ${NOTIFICATION_SERVICE_PORT}
 
+kafka:
+  topic:
+    order:
+      placed: ${KAFKA_TOPIC_ORDER_PLACED}
+
+notification:
+  email: ${NOTIFICATION_EMAIL}
+
 spring:
   application:
     name: notification-service
