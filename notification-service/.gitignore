@@ -1,5 +1,5 @@
 .env
-
+.env.gateway
 
 HELP.md
 target/
