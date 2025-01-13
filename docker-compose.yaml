@@ -41,6 +41,13 @@ services:
       - order-service
       - inventory-service
 
+  notification-service:
+    image: samuelrcabral/notification-service:latest
+    ports:
+      - "8083:8083"
+    env_file:
+      - .env.notification
+
   product-service:
     container_name: product-service
     image: samuelrcabral/product-service:latest
