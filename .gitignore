@@ -2,6 +2,7 @@
 .env.keycloak
 .env.gateway
 .env.notification
+.env.order
 
 .docker
 
