@@ -170,6 +170,19 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
+  tempo:
+    image: grafana/tempo:2.2.2
+    container_name: tempo
+    command: ["-config.file=/etc/tempo.yaml"]
+    volumes:
+      - ./docker/tempo/tempo.yml:/etc/tempo.yaml:ro
+      - ./data/tempo:/tmp/tempo
+    ports:
+      - "3110:3100" # Tempo
+      - "9411:9411" # zipkin
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
   mongodb:
     container_name: mongodb
     image: mongo:latest
