@@ -29,3 +29,27 @@ springdoc:
     path: /api-docs/ui.html
   api-docs:
     path: /api-docs
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http:
+          server:
+            requests: true
+  observations:
+    key-values:
+      application: inventory-service
+  tracing:
+    sampling:
+      probability: 1.0
+
+loki:
+  url: ${LOKI_URL}
