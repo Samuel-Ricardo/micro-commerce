@@ -4,6 +4,7 @@
 .env.notification
 .env.order
 .env.kafka
+.env.observability
 
 .docker
 
