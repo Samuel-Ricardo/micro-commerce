@@ -6,8 +6,6 @@ import java.math.BigDecimal
 
 data class PlaceOrderDTO(
     @NotBlank
-    val orderNumber: String,
-    @NotBlank
     val skuCode: String,
     @NotNull
     val price: BigDecimal,

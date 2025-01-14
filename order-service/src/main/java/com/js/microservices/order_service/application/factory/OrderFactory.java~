@@ -9,7 +9,7 @@ public class OrderFactory {
 
     public static OrderModel newOrderModel(Order order) {
         return OrderModel.builder()
-                .orderNumber(order.getOrderNumber())
+                .orderNumber()
                 .skuCode(order.getSkuCode().getCode())
                 .price(order.getPrice().getValue())
                 .quantity(order.getQuantity())
@@ -23,7 +23,7 @@ public class OrderFactory {
                 new SkuCode(order.getSkuCode()),
                 new Price(order.getPrice()),
                 order.getQuantity()
-        )
+        );
     }
 
 }
