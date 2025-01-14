@@ -14,3 +14,23 @@ springdoc:
   api-docs:
     path: /api-docs
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics, prometheus
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http:
+          server:
+            requests: true
+  observations:
+    key-values:
+      application: product-service
+  tracing:
+    sampling:
+      probability: 1.0
+
+loki:
+  url: ${LOKI_URL}
