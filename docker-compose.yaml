@@ -148,6 +148,15 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
+  loki:
+    image: grafana/loki:main
+    container_name: loki
+    command: ["-config.file=/etc/loki/local-config.yaml"]
+    ports:
+      - "3100:3100"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
   mongodb:
     container_name: mongodb
     image: mongo:latest
