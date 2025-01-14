@@ -18,11 +18,11 @@ interface InventoryGateway {
     }
 
     @GetExchange("/api/v1/inventory")
-    @CircuitBreaker(name = "inventory", fallbackMethod = "fallback")
+    @CircuitBreaker(name = "inventory", fallbackMethod = "fallbackMethod")
     @Retry(name = "inventory")
     fun isInStock(@RequestParam skuCode: String, @RequestParam quantity: Int): Boolean
 
-    fun fallback(skuCode: String, quantity: Int, throwable: Throwable): Boolean {
+    fun fallbackMethod(skuCode: String, quantity: Int, throwable: Throwable): Boolean {
         log.info("Cannot get inventory for skucode {}, failure reason: {}", skuCode, throwable.message)
         return false
     }

@@ -3,7 +3,7 @@ server:
 
 inventory:
   service:
-    url: http://inventory-service:8082
+    url: ${INVENTORY_SERVICE_URL}
 
 kafka:
   topic:

@@ -1,23 +1,26 @@
 import { Environment } from './interface/environment';
 
 export const environment: Environment = {
-  production: false,
+  production: true,
   AUTH: {
     AUTHORITY:
-      'http://localhost:8181/realms/java-shop-microservices-security-realm',
+      'http://host.docker.internal:8181/realms/java-shop-microservices-security-realm',
+    //      'http://localhost:8181/realms/java-shop-microservices-security-realm',
+    //      "http://keycloak:8080/realms/java-shop-microservices-security-realm",
+
     CLIENT: {
       ID: 'frontend-client',
     },
   },
   SERVICES: {
     PRODUCT: {
-      URL: 'http://api-gateway:9000/api/v1/products',
+      URL: 'http://localhost:9000/api/v1/products',
     },
     ORDER: {
-      URL: 'http://api-gateway:9000/api/v1/orders',
+      URL: 'http://localhost:9000/api/v1/orders',
     },
     INVENTORY: {
-      URL: 'http://api-gateway:9000/api/v1/inventory',
+      URL: 'http://localhost:9000/api/v1/inventory',
     },
   },
 };
