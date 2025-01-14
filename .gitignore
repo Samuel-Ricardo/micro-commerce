@@ -3,6 +3,7 @@
 .env.gateway
 .env.notification
 .env.order
+.env.kafka
 
 .docker
 
