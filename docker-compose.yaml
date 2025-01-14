@@ -7,6 +7,8 @@ services:
     depends_on:
       - keycloak
       - api-gateway
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   keycloak:
     container_name: keycloak
@@ -20,6 +22,8 @@ services:
       - ./docker/keycloak/realms/:/opt/keycloak/data/import/
     depends_on:
       - keycloak-mysql
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   keycloak-mysql:
     container_name: keycloak-mysql
@@ -28,6 +32,8 @@ services:
       - ./.docker/volume-data/mysql_keycloak_data:/var/lib/mysql
     env_file:
       - .env.keycloak
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   api-gateway:
     container_name: api-gateway
@@ -40,6 +46,17 @@ services:
       - product-service
       - order-service
       - inventory-service
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  notification-service:
+    image: samuelrcabral/notification-service:latest
+    ports:
+      - "8083:8083"
+    env_file:
+      - .env.notification
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   product-service:
     container_name: product-service
@@ -51,18 +68,22 @@ services:
       - .env.gateway
     depends_on:
       - mongodb
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   order-service:
     container_name: order-service
     image: samuelrcabral/order-service:latest
     restart: on-failure
     ports:
-      - "8081:8080"
+      - "8081:8081"
     env_file:
-      - .env.gateway
+      - .env.order
     depends_on:
       - postgres
       - inventory-service
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   inventory-service:
     container_name: inventory-service
@@ -74,6 +95,58 @@ services:
       - .env.gateway
     depends_on:
       - mysql
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    container_name: zookeeper
+    hostname: zookeeper
+    restart: always
+    env_file:
+      - .env.kafka
+    ports:
+      - "2181:2181"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  broker:
+    image: confluentinc/cp-kafka:latest
+    container_name: broker
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+    env_file:
+      - .env.kafka
+    depends_on:
+      - zookeeper
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  schema-registry:
+    image: confluentinc/cp-schema-registry:latest
+    container_name: schema-registry
+    hostname: schema-registry
+    ports:
+      - "9191:8081"
+    env_file:
+      - .env.kafka
+    depends_on:
+      - broker
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    ports:
+      - "9090:8080"
+    env_file:
+      - .env.kafka
+    depends_on:
+      - broker
+      - schema-registry
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   mongodb:
     container_name: mongodb
@@ -84,8 +157,9 @@ services:
       - .docker/data/mongodb:/data/db
     env_file:
       - .env.gateway
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
-    #OPTIONAL
   mongo-express:
     image: mongo-express:latest
     container_name: mongo-express
@@ -93,6 +167,8 @@ services:
       - "9081:8081"
     env_file:
       - .env.gateway
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   postgres:
     container_name: postgres
@@ -106,8 +182,9 @@ services:
       - ./docker/postgresql/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - "5432:5432"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
-    #OPTIONAL
   pgadmin:
     container_name: pgadmin
     image: dockerframework/pgadmin
@@ -120,6 +197,8 @@ services:
       - .docker/pgadmin:/database/admin/pgadmin
     ports:
       - "5050:80"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   mysql:
     container_name: mysql
@@ -133,8 +212,9 @@ services:
       - ./.docker/data/mysql:/var/lib/mysql
       - ./docker/mysql:/docker-entrypoint-initdb.d
       - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
-    #OPTIONAL
   phpmyadmin:
     container_name: phpmyadmin
     image: phpmyadmin:latest
@@ -145,3 +225,5 @@ services:
       - "9080:80"
     depends_on:
       - mysql
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

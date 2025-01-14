@@ -1,6 +1,10 @@
 .env
 .env.keycloak
 .env.gateway
+.env.notification
+.env.order
+.env.kafka
+
 .docker
 
 # Compiled class file
