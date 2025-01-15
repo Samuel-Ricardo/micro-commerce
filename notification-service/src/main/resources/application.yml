@@ -32,3 +32,31 @@ spring:
     port: ${NOTIFICATION_MAIL_PORT}
     username: ${NOTIFICATION_MAIL_USERNAME}
     password: ${NOTIFICATION_MAIL_PASSWORD}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http:
+          server:
+            requests: true
+
+  observations:
+    key-values:
+      application: notification-service
+
+  tracing:
+    sampling:
+      probability: 1.0
+
+  zipkin:
+    tracing:
+      endpoint: ${ZIPKIN_URL}
+
+loki:
+  url: ${LOKI_URL}
