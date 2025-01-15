@@ -8,16 +8,29 @@ spring:
     mongodb:
       uri: ${MONGODB_URI}
 
-
 springdoc:
-  api-docs:
-    path: /api-docs
   swagger-ui:
     path: /api-docs/ui.html
-    urls:
-      - name: Product Service
-        url: /aggregate/product-service/v3/api-docs
-      - name: Order Service
-        url: /aggregate/order-service/v3/api-docs
-      - name: Inventory Service
-        url: /aggregate/inventory-service/v3/api-docs
+  api-docs:
+    path: /api-docs
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics, prometheus
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http:
+          server:
+            requests: true
+  observations:
+    key-values:
+      application: product-service
+  tracing:
+    sampling:
+      probability: 1.0
+
+loki:
+  url:
