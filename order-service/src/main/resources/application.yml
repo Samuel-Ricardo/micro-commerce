@@ -45,7 +45,6 @@ springdoc:
     path: /api-docs
 
 management:
-
   metrics:
     distribution:
       percentiles-histogram:
@@ -71,6 +70,9 @@ management:
   endpoint:
     health:
       show-details: ${ORDERS_ENDPOINT_HEALTH_SHOW_DETAILS}
+  zipkin:
+    tracing:
+      endpoint: ${ZIPKIN_URL}
 
 resilience4j:
   circuitbreaker:
@@ -95,6 +97,6 @@ resilience4j:
         max-attempts: ${ORDERS_NAX_ATTEMPTS}
         wait-duration: ${ORDERS_WAIT_DURATION_BETWEEN_ATTEMPTS}
 
-
 loki:
   url: ${LOKI_URL}
+
