@@ -33,13 +33,11 @@ spring:
     username: ${NOTIFICATION_MAIL_USERNAME}
     password: ${NOTIFICATION_MAIL_PASSWORD}
 
-
 management:
-
   endpoints:
     web:
       exposure:
-        include: *
+        include: "*"
 
   metrics:
     distribution:
@@ -55,6 +53,10 @@ management:
   tracing:
     sampling:
       probability: 1.0
+
+  zipkin:
+    tracing:
+      endpoint: ${ZIPKIN_URL}
 
 loki:
   url: ${LOKI_URL}
