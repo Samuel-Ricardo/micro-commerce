@@ -8,6 +8,8 @@
 
 .docker
 
+data
+
 # Compiled class file
 *.class
 
