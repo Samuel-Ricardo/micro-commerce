@@ -88,6 +88,3 @@ resilience4j:
   tracing:
     sampling:
       probability: 1.0
-
-  loki:
-    url: ${LOKI_URL}
