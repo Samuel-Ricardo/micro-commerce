@@ -96,5 +96,3 @@ resilience4j:
         wait-duration: ${ORDERS_WAIT_DURATION_BETWEEN_ATTEMPTS}
 
 
-loki:
-  url: ${LOKI_URL}
