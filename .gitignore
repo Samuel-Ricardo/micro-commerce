@@ -9,6 +9,7 @@
 .docker
 
 k8s/manifest/infraestructure/**/secrets.yaml
+k8s/manifest/application/**/secrets.yaml
 
 data
 
