@@ -8,11 +8,11 @@
 
 .docker
 
-k8s/manifest/infraestructure/**/secrets.yaml
-k8s/manifest/infraestructure/**/secrets.yml
+k8s/manifest/**/secrets.yaml
+k8s/manifest/**/secrets.yml
 
-k8s/manifest/application/**/secrets.yaml
-k8s/manifest/application/**/secrets.yml
+k8s/manifest/**/configmap.yaml
+k8s/manifest/**/configmap.yml
 
 data
 
