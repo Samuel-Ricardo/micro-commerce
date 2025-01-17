@@ -1,0 +1,19 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tempo
+spec:
+  selector:
+    app: tempo
+  ports:
+    - name: tempo
+      protocol: TCP
+      port: 3200
+      targetPort: 3200
+    - name: zipkin
+      protocol: TCP
+      port: 9411
+      targetPort: 9411
+---
+

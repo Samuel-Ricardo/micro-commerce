@@ -1,0 +1,10 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kafka-ui-config
+data:
+  KAFKA_CLUSTERS_NAME: "local"
+  KAFKA_CLUSTERS_BOOTSTRAPSERVERS: "broker:29092"
+  DYNAMIC_CONFIG_ENABLED: "true"
+---
