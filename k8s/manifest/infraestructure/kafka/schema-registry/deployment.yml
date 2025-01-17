@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -25,3 +26,5 @@ spec:
               value: http://0.0.0.0:8081
           ports:
             - containerPort: 8081
+---
+
