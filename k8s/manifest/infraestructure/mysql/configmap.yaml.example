@@ -1,9 +1,0 @@
-# CONFIGMAP
-
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: mysql-initdb-config
-data:
-  initdb.sql: |
-    CREATE DATABASE IF NOT EXISTS 'inventory-service';
