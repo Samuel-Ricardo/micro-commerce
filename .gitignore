@@ -8,6 +8,8 @@
 
 .docker
 
+k8s/manifest/infraestructure/**/secrets.yaml
+
 data
 
 # Compiled class file
