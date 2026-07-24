@@ -62,6 +62,23 @@ Microservices:
 
 ![image](https://github.com/user-attachments/assets/c1a527cd-ecc3-492d-9882-c35dbd379d4f)
 
+## Índice de Documentação
+
+Abaixo um índice rápido para a pasta `docs` deste repositório:
+
+- [Visão Geral do Projeto](docs/PROJECT-OVERVIEW.md)
+- [Índice de Documentação](docs/INDEX.md)
+- [Arquitetura](docs/ARCHITECTURE.md)
+- [Requisitos de Negócio](docs/BUSINESS-REQUIREMENTS.md)
+- [Guia de Implementação](docs/IMPLEMENTATION-GUIDE.md)
+- [Guia de Deploy](docs/DEPLOYMENT-GUIDE.md)
+- [Referência de API](docs/API-REFERENCE.md)
+- [Estratégia de Testes](docs/TESTING-STRATEGY.md)
+- [Análise de Segurança](docs/SECURITY-ANALYSIS.md)
+- [Performance & Otimizações](docs/PERFORMANCE-OPTIMIZATION.md)
+- [Recursos de Aprendizado](docs/LEARNING-RESOURCES.md)
+- [Qualidade (overview)](docs/quality/OVERVIEW.md)
+
 
 
 
