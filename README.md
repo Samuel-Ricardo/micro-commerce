@@ -196,6 +196,15 @@ The inventory workflow has malformed `jobs`/`steps` nesting, and its standalone 
 
 Generated `HELP.md` files are optional Spring Initializr-style references. They are ignored/untracked and absent from a clean checkout unless regenerated; they are not required for this documentation set. The two frontend READMEs remain separate and untouched.
 
+## Additional Documentation (main branch)
+
+The merge from `origin/main` added a second documentation set under `docs/`, preserved alongside the validated flat pages above:
+
+- [Consolidated analysis (main)](docs/analysis/ANALYSIS_CONSOLIDATED.md)
+- [Documentation index (main)](docs/analysis/DOCUMENTATION_INDEX.md)
+- [Architecture documentation (main)](docs/architecture/) — includes ADR-001 through ADR-009 under [docs/architecture/adrs/](docs/architecture/adrs/)
+- [Testing strategy (main)](docs/TESTING-STRATEGY.md)
+
 ## Contribution and documentation rules
 
 - Describe the repository as it exists; label proposals as proposals.
